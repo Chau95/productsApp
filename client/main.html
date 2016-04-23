@@ -1,0 +1,71 @@
+<!--
+Chau (Joe) Duong
+IT 328
+Products App
+This is designed as a small products application
+that displays a list of products and shopping cart summary.
+-->
+
+<head>
+  <title>Products App</title>
+</head>
+
+<head>
+  <title>Products App</title>
+  <style>
+   ul {
+    list-style-position: inside;
+  }
+  
+  .panel {
+    border: 2px solid grey;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  h1 {
+    font-size: 200%;
+  }
+  </style>
+</head>
+
+<body>
+  <div class = "container">
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <strong>Super Store</strong>
+        </a>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Search</a></li>
+                <li><a href="#">Cart</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class = "jumbotron">
+        <center>
+          <h1><strong>My Store</strong></h1>
+          <h2>Browse our items below...</h2>
+        </center>
+    </div>
+    
+    {{> productList}}
+    
+  </div>
+</body>
+
+<template name="productList">
+    <p>{{totalProducts}}</p> <br>
+  
+    {{#each productArray}} 
+    <h2><strong>{{productName}}</strong></h2> <br>
+    
+    <img src= {{image}} alt=" " height="90" width="140" style = "float: right;">
+    {{productDescription}} <br>
+    Price: ${{price}} <br>
+    Keywords: {{keywords}} <br>
+  {{/each}}
+</template>
