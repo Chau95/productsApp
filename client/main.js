@@ -81,10 +81,8 @@ function onSale() {
       return false;
 }
 
-//Empty the sessions
+//Empty the session
 Session.setDefault('productArray', []);
-Session.setDefault('shoppingCart', []);
-Session.setDefault('itemsOnSales', []);
 //Putting stuffs into session
 Session.set('productArray', products);
 
@@ -98,59 +96,12 @@ Template.productList.helpers({
 	return Session.get('productArray').length + ' total products.';
   },
   
-  /*
-  myQuantity; function() {
-    for (var i = 0; i < Session.get('productArray').length; i++) {
-        return Session.get('productArray')[i].quantity;
-    }
-  }*/
-  
-  //Checking stock - Not working. Always conditioned to true. Only the first element of the array went through.
   stockLevels: function() {
-   for (var i = 0; i < Session.get('productArray').length; i++) {
-        if (Session.get('productArray')[i].quantity > 0) {
+   // for (int i = 0; i < Session.get('productArray').length; i++) {
+        if (Session.get('productArray').quantity > 0) {
             return ' (in-stock)';
-        } else if (Session.get('productArray')[i].quantity == 0) {
+        } else 
             return ' (out-of-stock)';
-        }    
-   }
-},
-
-    salesItems: function() {
-       for (var i = 0; i < Session.get('productArray').length; i++) {
-            if (Session.get('productArray')[i].salesPrice != 0.0) {
-                Session.set('itemsOnSales', this.products.productName)
-                return true;
-            } else if (Session.get('productArray')[i].salesPrice == 0) {
-                return false;
-            }    
-       }
-    }
+   // }
+  }
 });
-
-Template.sales.helpers({
-    //Retrieve the cart info
-    itemsOnSales: function() {
-	return Session.get('itemsOnSales');
-  },
-});
-
-
-Template.productList.events({
-    'click #buyBtn': function (e) {
-      e.preventDefault();
-      
-      Session.set('shoppingCart', this);
-      //product: [product object...],
-     //quantity: 10
-    }
-});
-
-
-Template.cart.helpers({
-    //Retrieve the cart info
-    myCart: function() {
-	return Session.get('shoppingCart');
-  },
-});
-

@@ -8,6 +8,10 @@ that displays a list of products and shopping cart summary.
 
 <head>
   <title>Products App</title>
+</head>
+
+<head>
+  <title>Products App</title>
   <style>
    ul {
     list-style-position: inside;
@@ -41,50 +45,27 @@ that displays a list of products and shopping cart summary.
         </div>
       </div>
     </div>
-    
     <div class = "jumbotron">
         <center>
           <h1><strong>My Store</strong></h1>
           <h2>Browse our items below...</h2>
         </center>
     </div>
-    <div>
-    {{> productList}} 
-    </div> <br>
-    <div style = "float: left;">
-    {{> cart}}
-    </div>
-    <div style = "float: right;">
-      {{> sales}}
-    </div>
-  </div> <!-- Container -->
+    
+    {{> productList}}
+    
+  </div>
 </body>
 
 <template name="productList">
     <p>{{totalProducts}}</p> <br>
   
-    {{#each productData}}
-   
-    <h2><strong>{{productName}} {{stockLevels}}</strong></h2> <br>
-      
-    <img src= {{image}} alt=" " height="100" width="140" style = "float: right;">
+    {{#each productArray}} 
+    <h2><strong>{{productName}}</strong></h2> <br>
+    
+    <img src= {{image}} alt=" " height="90" width="140" style = "float: right;">
     {{productDescription}} <br>
     Price: ${{price}} <br>
-    Keywords: {{keywords}} <br> <br>
-     <input type="button" id="buyBtn" value="Buy" />
+    Keywords: {{keywords}} <br>
   {{/each}}
 </template>
-
-<template name="cart">  
-  <h2><strong>Items in cart</strong></h2> <br>
-   {{#each myCart}}
-        Hello
-   {{/each}}
-</template>  
-
-<template name="sales">  
-  <h2><strong>Items on sales</strong></h2> <br>
-   {{#each itemsOnSales}}
-        Hello
-   {{/each}}
-</template>  
